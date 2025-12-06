@@ -24,7 +24,16 @@
     let originalParent = null;
     
     const imgPath = gameElement.dataset.imgPath || 'img/';
-    const translations = gameElement.dataset.translations ? JSON.parse(gameElement.dataset.translations) : null;
+    let translations = null;
+    if (gameElement.dataset.translations) {
+      try {
+        translations = JSON.parse(gameElement.dataset.translations);
+        console.log('Translations loaded:', translations);
+      } catch (e) {
+        console.error('Failed to parse translations:', e);
+        console.log('Translation data:', gameElement.dataset.translations);
+      }
+    }
     const board = gameElement.querySelector('.tp-board');
     const boardBase = gameElement.querySelector('.tp-board-base');
     const tray = gameElement.querySelector('.tp-tray');

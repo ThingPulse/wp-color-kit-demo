@@ -192,6 +192,7 @@
 }
 
 .tp-completion-btn {
+  display: inline-block;
   background: white;
   color: #667eea;
   border: none;
@@ -200,6 +201,7 @@
   font-weight: 600;
   border-radius: 6px;
   cursor: pointer;
+  text-decoration: none;
   transition: transform 0.2s ease;
 }
 

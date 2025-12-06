@@ -1,0 +1,420 @@
+<div id="tp-board-game">
+  <div class="tp-game-container">
+    <div class="tp-board-wrapper">
+      <div class="tp-board">
+        <img src="img/00_ConenctorBoard.png" class="tp-board-base" alt="Connector Board">
+        <!-- Placed components will be added here -->
+      </div>
+    </div>
+    
+    <div class="tp-step-indicator">
+      <span class="tp-step-text">Step 1 of 7: Place the Female Header Pins (12P)</span>
+    </div>
+    
+    <div class="tp-tray">
+      <img src="img/01_FemaleHeaderPins_12P.png" 
+           class="tp-component" 
+           data-id="01_FemaleHeaderPins_12P"
+           data-order="1"
+           alt="Female Header Pins 12P">
+      <img src="img/02_FemaleHeaderPins_16p.png" 
+           class="tp-component tp-hidden" 
+           data-id="02_FemaleHeaderPins_16p"
+           data-order="2"
+           alt="Female Header Pins 16P">
+      <img src="img/03_MaleHeaderPins_12P.png" 
+           class="tp-component tp-hidden" 
+           data-id="03_MaleHeaderPins_12P"
+           data-order="3"
+           alt="Male Header Pins 12P">
+      <img src="img/04_MaleHeaderPins_16P.png" 
+           class="tp-component tp-hidden" 
+           data-id="04_MaleHeaderPins_16P"
+           data-order="4"
+           alt="Male Header Pins 16P">
+      <img src="img/05_ePulseFeather.png" 
+           class="tp-component tp-hidden" 
+           data-id="05_ePulseFeather"
+           data-order="5"
+           alt="ePulse Feather">
+      <img src="img/06_PowerSwitch.png" 
+           class="tp-component tp-hidden" 
+           data-id="06_PowerSwitch"
+           data-order="6"
+           alt="Power Switch">
+      <img src="img/07_GroveConnector.png" 
+           class="tp-component tp-hidden" 
+           data-id="07_GroveConnector"
+           data-order="7"
+           alt="Grove Connector">
+    </div>
+    
+    <div class="tp-completion tp-hidden">
+      <p class="tp-completion-text">Nice! You've just built the whole board. This is exactly what you'll do with the real Color Kit.</p>
+      <button class="tp-completion-btn">Build it for real</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  #tp-board-game {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  #tp-board-game * {
+    box-sizing: border-box;
+  }
+  
+  .tp-game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .tp-board-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .tp-board {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    background: #f5f5f5;
+    border: 3px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .tp-board-base {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  .tp-step-indicator {
+    text-align: center;
+    padding: 10px;
+    background: #e8f4f8;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .tp-step-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2c5aa0;
+  }
+  
+  .tp-tray {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 1;
+    padding: 20px;
+    background: #fff;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .tp-component {
+    width: 100%;
+    height: 100%;
+    max-width: 360px;
+    max-height: 360px;
+    object-fit: contain;
+    cursor: grab;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  
+  .tp-component:active {
+    cursor: grabbing;
+  }
+  
+  .tp-component.tp-dragging {
+    position: fixed;
+    z-index: 1000;
+    opacity: 0.8;
+    pointer-events: none;
+  }
+  
+  .tp-component.tp-placed {
+    position: absolute;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: contain;
+    cursor: default;
+    opacity: 1;
+  }
+  
+  .tp-component.tp-hidden {
+    display: none;
+  }
+  
+  .tp-completion {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    animation: tp-fadeIn 0.5s ease;
+  }
+  
+  .tp-completion.tp-hidden {
+    display: none;
+  }
+  
+  .tp-completion-text {
+    color: white;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0 0 15px 0;
+  }
+  
+  .tp-completion-btn {
+    background: white;
+    color: #667eea;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .tp-completion-btn:hover {
+    transform: scale(1.05);
+  }
+  
+  @keyframes tp-fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #tp-board-game {
+      padding: 10px;
+    }
+    
+    .tp-component {
+      width: 80px;
+      height: 80px;
+    }
+    
+    .tp-tray {
+      min-height: 100px;
+      padding: 15px;
+    }
+  }
+</style>
+
+<script>
+(function() {
+  const componentOrder = [
+    { id: '01_FemaleHeaderPins_12P', name: 'Female Header Pins (12P)', order: 1 },
+    { id: '02_FemaleHeaderPins_16p', name: 'Female Header Pins (16P)', order: 2 },
+    { id: '03_MaleHeaderPins_12P', name: 'Male Header Pins (12P)', order: 3 },
+    { id: '04_MaleHeaderPins_16P', name: 'Male Header Pins (16P)', order: 4 },
+    { id: '05_ePulseFeather', name: 'ePulse Feather', order: 5 },
+    { id: '06_PowerSwitch', name: 'Power Switch', order: 6 },
+    { id: '07_GroveConnector', name: 'Grove Connector', order: 7 }
+  ];
+  
+  let currentStep = 1;
+  let draggedElement = null;
+  let startX = 0;
+  let startY = 0;
+  let offsetX = 0;
+  let offsetY = 0;
+  let originalParent = null;
+  let originalIndex = 0;
+  
+  const board = document.querySelector('.tp-board');
+  const tray = document.querySelector('.tp-tray');
+  const stepText = document.querySelector('.tp-step-text');
+  const completion = document.querySelector('.tp-completion');
+  
+  function updateStepIndicator() {
+    if (currentStep <= componentOrder.length) {
+      const currentComponent = componentOrder[currentStep - 1];
+      stepText.textContent = `Step ${currentStep} of ${componentOrder.length}: Place the ${currentComponent.name}`;
+    }
+  }
+  
+  function showCurrentComponent() {
+    const components = tray.querySelectorAll('.tp-component');
+    components.forEach(comp => {
+      const order = parseInt(comp.dataset.order);
+      if (order === currentStep) {
+        comp.classList.remove('tp-hidden');
+      } else if (!comp.classList.contains('tp-placed')) {
+        comp.classList.add('tp-hidden');
+      }
+    });
+  }
+  
+  function handlePointerDown(e) {
+    const component = e.target;
+    if (!component.classList.contains('tp-component') || component.classList.contains('tp-placed')) {
+      return;
+    }
+    
+    const order = parseInt(component.dataset.order);
+    if (order !== currentStep) {
+      return;
+    }
+    
+    e.preventDefault();
+    
+    draggedElement = component;
+    originalParent = component.parentElement;
+    
+    const rect = component.getBoundingClientRect();
+    const pointerX = e.clientX || e.touches?.[0]?.clientX || 0;
+    const pointerY = e.clientY || e.touches?.[0]?.clientY || 0;
+    
+    offsetX = pointerX - rect.left;
+    offsetY = pointerY - rect.top;
+    startX = rect.left;
+    startY = rect.top;
+    
+    component.classList.add('tp-dragging');
+    component.style.left = rect.left + 'px';
+    component.style.top = rect.top + 'px';
+    component.style.width = rect.width + 'px';
+    component.style.height = rect.height + 'px';
+    
+    document.addEventListener('pointermove', handlePointerMove);
+    document.addEventListener('pointerup', handlePointerUp);
+  }
+  
+  function handlePointerMove(e) {
+    if (!draggedElement) return;
+    
+    e.preventDefault();
+    
+    const pointerX = e.clientX || e.touches?.[0]?.clientX || 0;
+    const pointerY = e.clientY || e.touches?.[0]?.clientY || 0;
+    
+    draggedElement.style.left = (pointerX - offsetX) + 'px';
+    draggedElement.style.top = (pointerY - offsetY) + 'px';
+  }
+  
+  function handlePointerUp(e) {
+    if (!draggedElement) return;
+    
+    e.preventDefault();
+    
+    document.removeEventListener('pointermove', handlePointerMove);
+    document.removeEventListener('pointerup', handlePointerUp);
+    
+    const pointerX = e.clientX || e.changedTouches?.[0]?.clientX || 0;
+    const pointerY = e.clientY || e.changedTouches?.[0]?.clientY || 0;
+    
+    const boardRect = board.getBoundingClientRect();
+    
+    const isOverBoard = (
+      pointerX >= boardRect.left &&
+      pointerX <= boardRect.right &&
+      pointerY >= boardRect.top &&
+      pointerY <= boardRect.bottom
+    );
+    
+    if (isOverBoard) {
+      placeComponent(draggedElement);
+    } else {
+      snapBack(draggedElement);
+    }
+    
+    draggedElement = null;
+  }
+  
+  function placeComponent(component) {
+    component.classList.remove('tp-dragging');
+    component.classList.add('tp-placed');
+    component.style.position = 'absolute';
+    component.style.top = '0';
+    component.style.left = '0';
+    component.style.width = '100%';
+    component.style.height = '100%';
+    
+    const order = parseInt(component.dataset.order);
+    component.style.zIndex = order + 1;
+    
+    board.appendChild(component);
+    
+    currentStep++;
+    
+    if (currentStep > componentOrder.length) {
+      showCompletion();
+    } else {
+      updateStepIndicator();
+      showCurrentComponent();
+    }
+  }
+  
+  function snapBack(component) {
+    component.classList.remove('tp-dragging');
+    component.style.position = '';
+    component.style.left = '';
+    component.style.top = '';
+    component.style.width = '';
+    component.style.height = '';
+    
+    if (originalParent && originalParent.contains(component) === false) {
+      originalParent.appendChild(component);
+    }
+  }
+  
+  function showCompletion() {
+    completion.classList.remove('tp-hidden');
+    stepText.textContent = 'Assembly Complete!';
+  }
+  
+  function init() {
+    updateStepIndicator();
+    showCurrentComponent();
+    
+    const components = document.querySelectorAll('.tp-component');
+    components.forEach(comp => {
+      comp.addEventListener('pointerdown', handlePointerDown);
+    });
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>

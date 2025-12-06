@@ -13,39 +13,46 @@
     </div>
     
     <div class="tp-tray">
-      <img src="img/01_FemaleHeaderPins_12P.png" 
+      <img src="img/pickup/01_FemaleHeaderPins_12P.png" 
            class="tp-component" 
            data-id="01_FemaleHeaderPins_12P"
+           data-full-src="img/01_FemaleHeaderPins_12P.png"
            data-order="1"
            alt="Female Header Pins 12P">
-      <img src="img/02_FemaleHeaderPins_16p.png" 
+      <img src="img/pickup/02_FemaleHeaderPins_16p.png" 
            class="tp-component tp-hidden" 
            data-id="02_FemaleHeaderPins_16p"
+           data-full-src="img/02_FemaleHeaderPins_16p.png"
            data-order="2"
            alt="Female Header Pins 16P">
-      <img src="img/03_MaleHeaderPins_12P.png" 
+      <img src="img/pickup/03_MaleHeaderPins_12P.png" 
            class="tp-component tp-hidden" 
            data-id="03_MaleHeaderPins_12P"
+           data-full-src="img/03_MaleHeaderPins_12P.png"
            data-order="3"
            alt="Male Header Pins 12P">
-      <img src="img/04_MaleHeaderPins_16P.png" 
+      <img src="img/pickup/04_MaleHeaderPins_16P.png" 
            class="tp-component tp-hidden" 
            data-id="04_MaleHeaderPins_16P"
+           data-full-src="img/04_MaleHeaderPins_16P.png"
            data-order="4"
            alt="Male Header Pins 16P">
-      <img src="img/05_ePulseFeather.png" 
+      <img src="img/pickup/05_ePulseFeather.png" 
            class="tp-component tp-hidden" 
            data-id="05_ePulseFeather"
+           data-full-src="img/05_ePulseFeather.png"
            data-order="5"
            alt="ePulse Feather">
-      <img src="img/06_PowerSwitch.png" 
+      <img src="img/pickup/06_PowerSwitch.png" 
            class="tp-component tp-hidden" 
            data-id="06_PowerSwitch"
+           data-full-src="img/06_PowerSwitch.png"
            data-order="6"
            alt="Power Switch">
-      <img src="img/07_GroveConnector.png" 
+      <img src="img/pickup/07_GroveConnector.png" 
            class="tp-component tp-hidden" 
            data-id="07_GroveConnector"
+           data-full-src="img/07_GroveConnector.png"
            data-order="7"
            alt="Grove Connector">
     </div>
@@ -147,7 +154,7 @@
     position: relative;
     width: 100%;
     max-width: 400px;
-    aspect-ratio: 1;
+    min-height: 150px;
     padding: 20px;
     background: #fff;
     border: 2px dashed #ccc;
@@ -158,10 +165,10 @@
   }
   
   .tp-component {
-    width: 100%;
-    height: 100%;
-    max-width: 360px;
-    max-height: 360px;
+    max-width: 150px;
+    max-height: 150px;
+    width: auto;
+    height: auto;
     object-fit: contain;
     cursor: grab;
     transition: transform 0.2s ease, opacity 0.2s ease;
@@ -396,6 +403,12 @@
   }
   
   function placeComponent(component) {
+    // Switch to full-size image when placing on board
+    const fullSrc = component.dataset.fullSrc;
+    if (fullSrc) {
+      component.src = fullSrc;
+    }
+    
     component.classList.remove('tp-dragging');
     component.classList.add('tp-placed');
     component.style.position = 'absolute';

@@ -97,10 +97,11 @@
 <style>
   #tp-board-game {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    max-width: 500px;
+    max-width: 600px;
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
+    width: 100%;
   }
   
   #tp-board-game * {
@@ -117,26 +118,23 @@
   .tp-board-wrapper {
     position: relative;
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
   }
   
   .tp-board {
     position: relative;
     width: 100%;
-    aspect-ratio: 1;
     background: #f5f5f5;
     border: 3px solid #333;
     border-radius: 8px;
     overflow: hidden;
+    touch-action: none;
   }
   
   .tp-board-base {
-    position: absolute;
-    top: 0;
-    left: 0;
+    display: block;
     width: 100%;
-    height: 100%;
-    object-fit: contain;
+    height: auto;
     z-index: 1;
     pointer-events: none;
   }
@@ -147,7 +145,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: fill;
     z-index: 200;
     pointer-events: none;
     opacity: 0.6;
@@ -200,23 +198,24 @@
   
   .tp-step-indicator {
     text-align: center;
-    padding: 10px;
+    padding: 12px 15px;
     background: #e8f4f8;
     border-radius: 6px;
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
   }
   
   .tp-step-text {
-    font-size: 14px;
+    font-size: clamp(12px, 3vw, 14px);
     font-weight: 600;
     color: #2c5aa0;
+    line-height: 1.4;
   }
   
   .tp-tray {
     position: relative;
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     min-height: 150px;
     padding: 20px;
     background: #fff;
@@ -228,8 +227,8 @@
   }
   
   .tp-component {
-    max-width: 150px;
-    max-height: 150px;
+    max-width: min(150px, 35vw);
+    max-height: min(150px, 35vw);
     width: auto;
     height: auto;
     object-fit: contain;
@@ -259,7 +258,7 @@
     height: 100% !important;
     max-width: none !important;
     max-height: none !important;
-    object-fit: contain;
+    object-fit: fill;
     cursor: default;
     opacity: 1;
   }
@@ -274,7 +273,7 @@
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: 8px;
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     animation: tp-fadeIn 0.5s ease;
   }
   
@@ -284,7 +283,7 @@
   
   .tp-completion-text {
     color: white;
-    font-size: 16px;
+    font-size: clamp(14px, 3.5vw, 16px);
     line-height: 1.5;
     margin: 0 0 15px 0;
   }
@@ -293,8 +292,8 @@
     background: white;
     color: #667eea;
     border: none;
-    padding: 12px 24px;
-    font-size: 16px;
+    padding: clamp(10px, 2.5vw, 12px) clamp(20px, 5vw, 24px);
+    font-size: clamp(14px, 3.5vw, 16px);
     font-weight: 600;
     border-radius: 6px;
     cursor: pointer;
@@ -303,6 +302,10 @@
   
   .tp-completion-btn:hover {
     transform: scale(1.05);
+  }
+  
+  .tp-completion-btn:active {
+    transform: scale(0.98);
   }
   
   @keyframes tp-fadeIn {
@@ -318,17 +321,43 @@
   
   @media (max-width: 480px) {
     #tp-board-game {
+      padding: 15px 10px;
+    }
+    
+    .tp-game-container {
+      gap: 15px;
+    }
+    
+    .tp-board {
+      border-width: 2px;
+    }
+    
+    .tp-tray {
+      min-height: 120px;
+      padding: 15px;
+    }
+    
+    .tp-step-indicator {
       padding: 10px;
     }
     
-    .tp-component {
-      width: 80px;
-      height: 80px;
+    .tp-completion {
+      padding: 15px;
+    }
+  }
+  
+  @media (max-width: 360px) {
+    #tp-board-game {
+      padding: 10px;
+    }
+    
+    .tp-game-container {
+      gap: 12px;
     }
     
     .tp-tray {
       min-height: 100px;
-      padding: 15px;
+      padding: 12px;
     }
   }
 </style>
@@ -588,6 +617,9 @@
   
   function showCompletion() {
     showDisplayOn();
+    
+    // Hide the tray
+    tray.style.display = 'none';
     
     setTimeout(() => {
       completion.classList.remove('tp-hidden');

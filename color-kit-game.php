@@ -113,7 +113,7 @@ class ColorKitGame {
              data-button-text="<?php echo esc_attr($atts['button_text']); ?>" 
              data-img-path="<?php echo esc_url($atts['img_path']); ?>"
              data-lang="<?php echo esc_attr($atts['lang']); ?>"
-             data-translations="<?php echo esc_attr(json_encode($translations)); ?>">
+             data-translations='<?php echo wp_json_encode($translations); ?>'>
           <div class="tp-game-container">
             <div class="tp-board-wrapper">
               <div class="tp-board">

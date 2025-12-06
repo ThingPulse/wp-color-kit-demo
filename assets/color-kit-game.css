@@ -1,0 +1,265 @@
+#tp-board-game {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+#tp-board-game * {
+  box-sizing: border-box;
+}
+
+.tp-game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.tp-board-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+}
+
+.tp-board {
+  position: relative;
+  width: 100%;
+  background: #f5f5f5;
+  border: 3px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+  touch-action: none;
+}
+
+.tp-board-base {
+  display: block;
+  width: 100%;
+  height: auto;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.tp-ghost-component {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0.6;
+  filter: brightness(0) invert(1);
+  animation: tp-pulse 2s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+@keyframes tp-pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes tp-flicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0.2;
+  }
+  20% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0.4;
+  }
+  40% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  60% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.6;
+  }
+  80% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.3;
+  }
+}
+
+.tp-step-indicator {
+  text-align: center;
+  padding: 12px 15px;
+  background: #e8f4f8;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.tp-step-text {
+  font-size: clamp(12px, 3vw, 14px);
+  font-weight: 600;
+  color: #2c5aa0;
+  line-height: 1.4;
+}
+
+.tp-tray {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  min-height: 150px;
+  padding: 20px;
+  background: #fff;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tp-component {
+  max-width: min(150px, 35vw);
+  max-height: min(150px, 35vw);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  cursor: grab;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.tp-component:active {
+  cursor: grabbing;
+}
+
+.tp-component.tp-dragging {
+  position: fixed;
+  z-index: 1000;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.tp-component.tp-placed {
+  position: absolute;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: fill;
+  cursor: default;
+  opacity: 1;
+}
+
+.tp-component.tp-hidden {
+  display: none;
+}
+
+.tp-completion {
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+  animation: tp-fadeIn 0.5s ease;
+}
+
+.tp-completion.tp-hidden {
+  display: none;
+}
+
+.tp-completion-text {
+  color: white;
+  font-size: clamp(14px, 3.5vw, 16px);
+  line-height: 1.5;
+  margin: 0 0 15px 0;
+}
+
+.tp-completion-btn {
+  background: white;
+  color: #667eea;
+  border: none;
+  padding: clamp(10px, 2.5vw, 12px) clamp(20px, 5vw, 24px);
+  font-size: clamp(14px, 3.5vw, 16px);
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.tp-completion-btn:hover {
+  transform: scale(1.05);
+}
+
+.tp-completion-btn:active {
+  transform: scale(0.98);
+}
+
+@keyframes tp-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  #tp-board-game {
+    padding: 15px 10px;
+  }
+  
+  .tp-game-container {
+    gap: 15px;
+  }
+  
+  .tp-board {
+    border-width: 2px;
+  }
+  
+  .tp-tray {
+    min-height: 120px;
+    padding: 15px;
+  }
+  
+  .tp-step-indicator {
+    padding: 10px;
+  }
+  
+  .tp-completion {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 360px) {
+  #tp-board-game {
+    padding: 10px;
+  }
+  
+  .tp-game-container {
+    gap: 12px;
+  }
+  
+  .tp-tray {
+    min-height: 100px;
+    padding: 12px;
+  }
+}

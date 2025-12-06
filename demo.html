@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Kit Assembly Game - Demo</title>
+    <link rel="stylesheet" href="assets/color-kit-game.css">
+</head>
+<body style="margin: 0; padding: 20px; background: #f0f0f0;">
+    
+    <div id="tp-board-game" data-button-url="https://example.com/shop" data-button-text="Build it for real" data-img-path="img/">
+      <div class="tp-game-container">
+        <div class="tp-board-wrapper">
+          <div class="tp-board">
+            <img src="img/00_ConenctorBoard.png" class="tp-board-base" alt="Connector Board">
+            <img src="img/01_FemaleHeaderPins_12P.png" class="tp-ghost-component" id="tp-ghost" alt="Target placement">
+            <!-- Placed components will be added here -->
+          </div>
+        </div>
+        
+        <div class="tp-step-indicator">
+          <span class="tp-step-text">Step 1 of 12: Place the Female Header Pins (12P)</span>
+        </div>
+        
+        <div class="tp-tray">
+          <img src="img/pickup/01_FemaleHeaderPins_12P.png" 
+               class="tp-component" 
+               data-id="01_FemaleHeaderPins_12P"
+               data-full-src="img/01_FemaleHeaderPins_12P.png"
+               data-order="1"
+               alt="Female Header Pins 12P">
+          <img src="img/pickup/02_FemaleHeaderPins_16p.png" 
+               class="tp-component tp-hidden" 
+               data-id="02_FemaleHeaderPins_16p"
+               data-full-src="img/02_FemaleHeaderPins_16p.png"
+               data-order="2"
+               alt="Female Header Pins 16P">
+          <img src="img/pickup/03_MaleHeaderPins_12P.png" 
+               class="tp-component tp-hidden" 
+               data-id="03_MaleHeaderPins_12P"
+               data-full-src="img/03_MaleHeaderPins_12P.png"
+               data-order="3"
+               alt="Male Header Pins 12P">
+          <img src="img/pickup/04_MaleHeaderPins_16P.png" 
+               class="tp-component tp-hidden" 
+               data-id="04_MaleHeaderPins_16P"
+               data-full-src="img/04_MaleHeaderPins_16P.png"
+               data-order="4"
+               alt="Male Header Pins 16P">
+          <img src="img/pickup/05_ePulseFeather.png" 
+               class="tp-component tp-hidden" 
+               data-id="05_ePulseFeather"
+               data-full-src="img/05_ePulseFeather.png"
+               data-order="5"
+               alt="ePulse Feather">
+          <img src="img/pickup/06_PowerSwitch.png" 
+               class="tp-component tp-hidden" 
+               data-id="06_PowerSwitch"
+               data-full-src="img/06_PowerSwitch.png"
+               data-order="6"
+               alt="Power Switch">
+          <img src="img/pickup/07_GroveConnector.png" 
+               class="tp-component tp-hidden" 
+               data-id="07_GroveConnector"
+               data-full-src="img/07_GroveConnector.png"
+               data-order="7"
+               alt="Grove Connector">
+          <img src="img/pickup/11_Sticker1.png" 
+               class="tp-component tp-hidden" 
+               data-id="11_Sticker1"
+               data-full-src="img/11_Sticker1.png"
+               data-order="8"
+               alt="Sticker 1">
+          <img src="img/pickup/12_Sticker2.png" 
+               class="tp-component tp-hidden" 
+               data-id="12_Sticker2"
+               data-full-src="img/12_Sticker2.png"
+               data-order="9"
+               alt="Sticker 2">
+          <img src="img/pickup/13_Sticker3.png" 
+               class="tp-component tp-hidden" 
+               data-id="13_Sticker3"
+               data-full-src="img/13_Sticker3.png"
+               data-order="10"
+               alt="Sticker 3">
+          <img src="img/pickup/14_Sticker4.png" 
+               class="tp-component tp-hidden" 
+               data-id="14_Sticker4"
+               data-full-src="img/14_Sticker4.png"
+               data-order="11"
+               alt="Sticker 4">
+          <img src="img/pickup/15_Display.png" 
+               class="tp-component tp-hidden" 
+               data-id="15_Display"
+               data-full-src="img/15_Display.png"
+               data-order="12"
+               alt="Display">
+        </div>
+        
+        <div class="tp-completion tp-hidden">
+          <p class="tp-completion-text">Nice! You've just built the whole board. This is exactly what you'll do with the real Color Kit.</p>
+          <button class="tp-completion-btn" onclick="window.location.href='https://example.com/shop'">Build it for real</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/color-kit-game.js"></script>
+</body>
+</html>

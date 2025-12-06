@@ -55,6 +55,36 @@
            data-full-src="img/07_GroveConnector.png"
            data-order="7"
            alt="Grove Connector">
+      <img src="img/pickup/11_Sticker1.png" 
+           class="tp-component tp-hidden" 
+           data-id="11_Sticker1"
+           data-full-src="img/11_Sticker1.png"
+           data-order="8"
+           alt="Sticker 1">
+      <img src="img/pickup/12_Sticker2.png" 
+           class="tp-component tp-hidden" 
+           data-id="12_Sticker2"
+           data-full-src="img/12_Sticker2.png"
+           data-order="9"
+           alt="Sticker 2">
+      <img src="img/pickup/13_Sticker3.png" 
+           class="tp-component tp-hidden" 
+           data-id="13_Sticker3"
+           data-full-src="img/13_Sticker3.png"
+           data-order="10"
+           alt="Sticker 3">
+      <img src="img/pickup/14_Sticker4.png" 
+           class="tp-component tp-hidden" 
+           data-id="14_Sticker4"
+           data-full-src="img/14_Sticker4.png"
+           data-order="11"
+           alt="Sticker 4">
+      <img src="img/pickup/15_Display.png" 
+           class="tp-component tp-hidden" 
+           data-id="15_Display"
+           data-full-src="img/15_Display.png"
+           data-order="12"
+           alt="Display">
     </div>
     
     <div class="tp-completion tp-hidden">
@@ -118,7 +148,7 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-    z-index: 2;
+    z-index: 200;
     pointer-events: none;
     opacity: 0.6;
     filter: brightness(0) invert(1);
@@ -132,6 +162,39 @@
     }
     50% {
       opacity: 0.8;
+    }
+  }
+  
+  @keyframes tp-flicker {
+    0%, 100% {
+      opacity: 1;
+    }
+    10% {
+      opacity: 0.2;
+    }
+    20% {
+      opacity: 1;
+    }
+    30% {
+      opacity: 0.4;
+    }
+    40% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.1;
+    }
+    60% {
+      opacity: 1;
+    }
+    70% {
+      opacity: 0.6;
+    }
+    80% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 0.3;
     }
   }
   
@@ -279,7 +342,12 @@
     { id: '04_MaleHeaderPins_16P', name: 'Male Header Pins (16P)', order: 4 },
     { id: '05_ePulseFeather', name: 'ePulse Feather', order: 5 },
     { id: '06_PowerSwitch', name: 'Power Switch', order: 6 },
-    { id: '07_GroveConnector', name: 'Grove Connector', order: 7 }
+    { id: '07_GroveConnector', name: 'Grove Connector', order: 7 },
+    { id: '11_Sticker1', name: 'Sticker 1', order: 8 },
+    { id: '12_Sticker2', name: 'Sticker 2', order: 9 },
+    { id: '13_Sticker3', name: 'Sticker 3', order: 10 },
+    { id: '14_Sticker4', name: 'Sticker 4', order: 11 },
+    { id: '15_Display', name: 'Display', order: 12 }
   ];
   
   let currentStep = 1;
@@ -292,6 +360,7 @@
   let originalIndex = 0;
   
   const board = document.querySelector('.tp-board');
+  const boardBase = document.querySelector('.tp-board-base');
   const tray = document.querySelector('.tp-tray');
   const stepText = document.querySelector('.tp-step-text');
   const completion = document.querySelector('.tp-completion');
@@ -308,7 +377,8 @@
     if (currentStep <= componentOrder.length) {
       const currentComponent = componentOrder[currentStep - 1];
       ghostComponent.src = `img/${currentComponent.id}.png`;
-      ghostComponent.style.zIndex = currentStep + 1;
+      ghostComponent.style.zIndex = '200';
+      ghostComponent.style.display = 'block';
     } else {
       ghostComponent.style.display = 'none';
     }
@@ -424,7 +494,20 @@
     
     currentStep++;
     
-    if (currentStep > componentOrder.length) {
+    // Check if we just placed the Grove Connector (step 7)
+    if (order === 7) {
+      setTimeout(() => {
+        flipBoardToBack();
+        // Update UI after flip animation completes (1.6s total)
+        setTimeout(() => {
+          if (currentStep <= componentOrder.length) {
+            updateStepIndicator();
+            updateGhostComponent();
+            showCurrentComponent();
+          }
+        }, 1600);
+      }, 500);
+    } else if (currentStep > componentOrder.length) {
       showCompletion();
     } else {
       updateStepIndicator();
@@ -446,9 +529,70 @@
     }
   }
   
+  function flipBoardToBack() {
+    // Hide ghost component during transition
+    ghostComponent.style.display = 'none';
+    
+    // Add flip animation
+    board.style.transition = 'transform 0.8s ease-in-out';
+    board.style.transformStyle = 'preserve-3d';
+    board.style.transform = 'rotateY(180deg)';
+    
+    setTimeout(() => {
+      // Hide all front-side components (orders 1-7)
+      const placedComponents = board.querySelectorAll('.tp-component.tp-placed');
+      placedComponents.forEach(comp => {
+        const order = parseInt(comp.dataset.order);
+        if (order <= 7) {
+          comp.style.display = 'none';
+        }
+      });
+      
+      // Switch to back board image
+      boardBase.src = 'img/10_ConnectorBoard.png';
+      board.style.transform = 'rotateY(360deg)';
+      
+      setTimeout(() => {
+        board.style.transition = '';
+        board.style.transform = '';
+        updateGhostComponent();
+      }, 800);
+    }, 800);
+  }
+  
+  function showDisplayOn() {
+    // Hide the ghost component
+    ghostComponent.style.display = 'none';
+    
+    // Create display on overlay
+    const displayOn = document.createElement('img');
+    displayOn.src = 'img/16_DisplayOn.png';
+    displayOn.style.position = 'absolute';
+    displayOn.style.top = '0';
+    displayOn.style.left = '0';
+    displayOn.style.width = '100%';
+    displayOn.style.height = '100%';
+    displayOn.style.objectFit = 'contain';
+    displayOn.style.zIndex = '300';
+    displayOn.style.opacity = '0';
+    displayOn.style.animation = 'tp-flicker 2s ease-in-out';
+    
+    board.appendChild(displayOn);
+    
+    // Remove flicker animation after it completes and keep display on
+    setTimeout(() => {
+      displayOn.style.animation = '';
+      displayOn.style.opacity = '1';
+    }, 2000);
+  }
+  
   function showCompletion() {
-    completion.classList.remove('tp-hidden');
-    stepText.textContent = 'Assembly Complete!';
+    showDisplayOn();
+    
+    setTimeout(() => {
+      completion.classList.remove('tp-hidden');
+      stepText.textContent = 'Assembly Complete!';
+    }, 2500);
   }
   
   function init() {

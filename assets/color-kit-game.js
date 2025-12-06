@@ -1,6 +1,8 @@
 (function() {
   'use strict';
   
+  console.log('Color Kit Game Script Loaded v1.0.1');
+  
   const componentOrder = [
     { id: '01_FemaleHeaderPins_12P', name: 'Female Header Pins (12P)', order: 1 },
     { id: '02_FemaleHeaderPins_16p', name: 'Female Header Pins (16P)', order: 2 },

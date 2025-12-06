@@ -204,7 +204,7 @@ class ColorKitGame {
             
             <div class="tp-completion tp-hidden">
               <p class="tp-completion-text"><?php echo esc_html($translations['completion_text']); ?></p>
-              <button class="tp-completion-btn" onclick="window.location.href='<?php echo esc_url($atts['button_url']); ?>'"><?php echo esc_html($atts['button_text']); ?></button>
+              <a href="<?php echo esc_url($atts['button_url']); ?>" class="tp-completion-btn"><?php echo esc_html($atts['button_text']); ?></a>
             </div>
           </div>
         </div>

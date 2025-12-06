@@ -24,18 +24,7 @@
     let originalParent = null;
     
     const imgPath = gameElement.dataset.imgPath || 'img/';
-    
-    // Get translations from global variable or data attribute (fallback for demo.html)
-    let translations = null;
-    if (window.colorKitTranslations && window.colorKitTranslations[gameElement.id]) {
-      translations = window.colorKitTranslations[gameElement.id];
-    } else if (gameElement.dataset.translations) {
-      try {
-        translations = JSON.parse(gameElement.dataset.translations);
-      } catch (e) {
-        console.error('Failed to parse translations:', e);
-      }
-    }
+    const translations = gameElement.dataset.translations ? JSON.parse(gameElement.dataset.translations) : null;
     const board = gameElement.querySelector('.tp-board');
     const boardBase = gameElement.querySelector('.tp-board-base');
     const tray = gameElement.querySelector('.tp-tray');
@@ -291,13 +280,9 @@
   }
   
   function init() {
-    // Support both new class-based selector (WordPress) and old ID selector (demo.html)
-    const games = document.querySelectorAll('.tp-board-game, #tp-board-game');
+    const games = document.querySelectorAll('#tp-board-game');
     games.forEach(game => initGame(game));
   }
-  
-  // Expose initGame globally for WordPress inline script initialization
-  window.colorKitGameInit = initGame;
   
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

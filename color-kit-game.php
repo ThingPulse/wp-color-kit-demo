@@ -69,8 +69,6 @@ class ColorKitGame {
         return isset($translations[$lang]) ? $translations[$lang] : $translations['en'];
     }
     
-    private static $game_counter = 0;
-    
     public function enqueue_assets() {
         // Only enqueue if shortcode is present
         global $post;
@@ -108,17 +106,14 @@ class ColorKitGame {
             $atts['button_text'] = $translations['button_text'];
         }
         
-        // Generate unique ID for this game instance
-        $game_id = 'tp-board-game-' . self::$game_counter++;
-        
         ob_start();
         ?>
-        <div id="<?php echo $game_id; ?>" 
-             class="tp-board-game"
+        <div id="tp-board-game" 
              data-button-url="<?php echo esc_url($atts['button_url']); ?>" 
              data-button-text="<?php echo esc_attr($atts['button_text']); ?>" 
              data-img-path="<?php echo esc_url($atts['img_path']); ?>"
-             data-lang="<?php echo esc_attr($atts['lang']); ?>">
+             data-lang="<?php echo esc_attr($atts['lang']); ?>"
+             data-translations='<?php echo htmlspecialchars(json_encode($translations), ENT_QUOTES, "UTF-8"); ?>'>
           <div class="tp-game-container">
             <div class="tp-board-wrapper">
               <div class="tp-board">
@@ -213,19 +208,6 @@ class ColorKitGame {
             </div>
           </div>
         </div>
-        <script type="text/javascript">
-        (function() {
-            if (typeof window.colorKitTranslations === 'undefined') {
-                window.colorKitTranslations = {};
-            }
-            window.colorKitTranslations['<?php echo $game_id; ?>'] = <?php echo json_encode($translations); ?>;
-            
-            // If the main script is already loaded, initialize this game instance
-            if (typeof window.colorKitGameInit === 'function') {
-                window.colorKitGameInit(document.getElementById('<?php echo $game_id; ?>'));
-            }
-        })();
-        </script>
         <?php
         return ob_get_clean();
     }

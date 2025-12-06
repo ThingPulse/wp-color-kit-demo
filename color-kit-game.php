@@ -129,7 +129,7 @@ class ColorKitGame {
             <div class="tp-board-wrapper">
               <div class="tp-board">
                 <img src="<?php echo esc_url($atts['img_path']); ?>00_ConenctorBoard.png" class="tp-board-base" alt="Connector Board">
-                <img src="<?php echo esc_url($atts['img_path']); ?>01_FemaleHeaderPins_12P.png" class="tp-ghost-component" id="tp-ghost" alt="Target placement">
+                <img src="<?php echo esc_url($atts['img_path']); ?>01_FemaleHeaderPins_12P.png" class="tp-ghost-component" alt="Target placement">
                 <!-- Placed components will be added here -->
               </div>
             </div>

@@ -24,6 +24,7 @@
     let originalParent = null;
     
     const imgPath = gameElement.dataset.imgPath || 'img/';
+    const translations = gameElement.dataset.translations ? JSON.parse(gameElement.dataset.translations) : null;
     const board = gameElement.querySelector('.tp-board');
     const boardBase = gameElement.querySelector('.tp-board-base');
     const tray = gameElement.querySelector('.tp-tray');
@@ -34,7 +35,14 @@
     function updateStepIndicator() {
       if (currentStep <= componentOrder.length) {
         const currentComponent = componentOrder[currentStep - 1];
-        stepText.textContent = `Step ${currentStep} of ${componentOrder.length}: Place the ${currentComponent.name}`;
+        if (translations && translations.step_text && translations.components[currentComponent.id]) {
+          stepText.textContent = translations.step_text
+            .replace('%d', currentStep)
+            .replace('%d', componentOrder.length)
+            .replace('%s', translations.components[currentComponent.id]);
+        } else {
+          stepText.textContent = `Step ${currentStep} of ${componentOrder.length}: Place the ${currentComponent.name}`;
+        }
       }
     }
     
@@ -245,7 +253,19 @@
       
       setTimeout(() => {
         completion.classList.remove('tp-hidden');
-        stepText.textContent = 'Assembly Complete!';
+        stepText.textContent = translations && translations.assembly_complete ? translations.assembly_complete : 'Assembly Complete!';
+        
+        // Update completion text and button with translations
+        const completionText = completion.querySelector('.tp-completion-text');
+        const completionBtn = completion.querySelector('.tp-completion-btn');
+        
+        if (completionText && translations && translations.completion_text) {
+          completionText.textContent = translations.completion_text;
+        }
+        
+        if (completionBtn && translations && translations.button_text) {
+          completionBtn.textContent = translations.button_text;
+        }
       }, 2500);
     }
     

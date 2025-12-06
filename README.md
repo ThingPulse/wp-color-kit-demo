@@ -78,19 +78,24 @@ An interactive drag-and-drop PCB assembly game for WordPress with Elementor supp
 [color_kit_game button_text="Order Now"]
 ```
 
+### Shortcode with German Language
+
+```
+[color_kit_game lang="de"]
+```
+
 ### Full Shortcode Options
 
 ```
-[color_kit_game button_url="https://yourstore.com/product/color-kit" button_text="Get Your Color Kit"]
+[color_kit_game button_url="https://yourstore.com/product/color-kit" button_text="Get Your Color Kit" lang="en"]
 ```
 
-### Custom Image Path (Optional)
+### Shortcode Attributes
 
-If you want to store images in a different location:
-
-```
-[color_kit_game img_path="https://yourcdn.com/images/"]
-```
+- `button_url` - URL where the button should link (default: `#`)
+- `button_text` - Custom button text (optional, will use language default if not set)
+- `lang` - Language code: `en` (English) or `de` (German) (default: `en`)
+- `img_path` - Custom path to images (default: plugin's assets/img/ folder)
 
 ### Using in Elementor
 
@@ -99,7 +104,27 @@ If you want to store images in a different location:
    ```
    [color_kit_game button_url="YOUR_PRODUCT_URL"]
    ```
+   Or for German:
+   ```
+   [color_kit_game button_url="YOUR_PRODUCT_URL" lang="de"]
+   ```
 3. Save and preview
+
+## Language Support
+
+The plugin supports **English** (default) and **German** translations.
+
+### English (default)
+```
+[color_kit_game button_url="https://yourstore.com/product"]
+```
+
+### German
+```
+[color_kit_game button_url="https://yourstore.com/product" lang="de"]
+```
+
+All UI text, including step instructions, component names, and completion messages will be translated automatically.
 
 ## Testing Outside WordPress
 

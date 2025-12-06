@@ -5,10 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Kit Assembly Game - Demo</title>
     <link rel="stylesheet" href="assets/color-kit-game.css">
+    <style>
+        .demo-controls {
+            max-width: 600px;
+            margin: 0 auto 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .demo-controls button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 14px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .demo-controls button.active {
+            background: #667eea;
+            color: white;
+        }
+        .demo-controls button:hover {
+            opacity: 0.8;
+        }
+    </style>
 </head>
 <body style="margin: 0; padding: 20px; background: #f0f0f0;">
     
-    <div id="tp-board-game" data-button-url="https://example.com/shop" data-button-text="Build it for real" data-img-path="assets/img/">
+    <div class="demo-controls">
+        <strong>Language / Sprache:</strong><br>
+        <button id="btn-en" class="active" onclick="switchLanguage('en')">English</button>
+        <button id="btn-de" onclick="switchLanguage('de')">Deutsch</button>
+    </div>
+    
+    <div id="tp-board-game" data-button-url="https://example.com/shop" data-button-text="" data-img-path="assets/img/" data-lang="en">
       <div class="tp-game-container">
         <div class="tp-board-wrapper">
           <div class="tp-board">
@@ -18,11 +52,9 @@
           </div>
         </div>
         
-        <div class="tp-step-indicator">
-          <span class="tp-step-text">Step 1 of 12: Place the Female Header Pins (12P)</span>
-        </div>
-        
-        <div class="tp-tray">
+            <div class="tp-step-indicator">
+              <span class="tp-step-text" id="initial-step-text">Step 1 of 12: Place the Female Header Pins (12P)</span>
+            </div>        <div class="tp-tray">
           <img src="assets/img/pickup/01_FemaleHeaderPins_12P.png" 
                class="tp-component" 
                data-id="01_FemaleHeaderPins_12P"
@@ -98,12 +130,80 @@
         </div>
         
         <div class="tp-completion tp-hidden">
-          <p class="tp-completion-text">Nice! You've just built the whole board. This is exactly what you'll do with the real Color Kit.</p>
-          <button class="tp-completion-btn" onclick="window.location.href='https://example.com/shop'">Build it for real</button>
+          <p class="tp-completion-text" id="completion-text">Nice! You've just built the whole board. This is exactly what you'll do with the real Color Kit.</p>
+          <button class="tp-completion-btn" id="completion-btn" onclick="window.location.href='https://example.com/shop'">Build it for real</button>
         </div>
       </div>
     </div>
 
     <script src="assets/color-kit-game.js"></script>
+    <script>
+      const translations = {
+        en: {
+          step_text: 'Step %d of %d: Place the %s',
+          completion_text: "Nice! You've just built the whole board. This is exactly what you'll do with the real Color Kit.",
+          button_text: 'Build it for real',
+          assembly_complete: 'Assembly Complete!',
+          components: {
+            '01_FemaleHeaderPins_12P': 'Female Header Pins (12P)',
+            '02_FemaleHeaderPins_16p': 'Female Header Pins (16P)',
+            '03_MaleHeaderPins_12P': 'Male Header Pins (12P)',
+            '04_MaleHeaderPins_16P': 'Male Header Pins (16P)',
+            '05_ePulseFeather': 'ePulse Feather',
+            '06_PowerSwitch': 'Power Switch',
+            '07_GroveConnector': 'Grove Connector',
+            '11_Sticker1': 'Sticker 1',
+            '12_Sticker2': 'Sticker 2',
+            '13_Sticker3': 'Sticker 3',
+            '14_Sticker4': 'Sticker 4',
+            '15_Display': 'Display'
+          }
+        },
+        de: {
+          step_text: 'Schritt %d von %d: Platziere %s',
+          completion_text: 'Toll! Du hast gerade die ganze Platine gebaut. Genau das wirst du mit dem echten Color Kit tun.',
+          button_text: 'Jetzt das echte bauen',
+          assembly_complete: 'Montage abgeschlossen!',
+          components: {
+            '01_FemaleHeaderPins_12P': 'die Buchsenleiste (12P)',
+            '02_FemaleHeaderPins_16p': 'die Buchsenleiste (16P)',
+            '03_MaleHeaderPins_12P': 'die Stiftleiste (12P)',
+            '04_MaleHeaderPins_16P': 'die Stiftleiste (16P)',
+            '05_ePulseFeather': 'das ePulse Feather',
+            '06_PowerSwitch': 'den Power-Schalter',
+            '07_GroveConnector': 'den Grove-Anschluss',
+            '11_Sticker1': 'Sticker 1',
+            '12_Sticker2': 'Sticker 2',
+            '13_Sticker3': 'Sticker 3',
+            '14_Sticker4': 'Sticker 4',
+            '15_Display': 'das Display'
+          }
+        }
+      };
+      
+      function switchLanguage(lang) {
+        // Store language preference
+        localStorage.setItem('colorKitLang', lang);
+        
+        // Reload to restart game with new language
+        location.reload();
+      }
+      
+      // Set initial translations based on stored preference
+      (function() {
+        const gameElement = document.getElementById('tp-board-game');
+        const savedLang = localStorage.getItem('colorKitLang') || 'en';
+        const trans = translations[savedLang];
+        
+        // Update data attributes
+        gameElement.dataset.lang = savedLang;
+        gameElement.dataset.translations = JSON.stringify(trans);
+        gameElement.dataset.buttonText = trans.button_text;
+        
+        // Update button active state
+        document.getElementById('btn-en').classList.toggle('active', savedLang === 'en');
+        document.getElementById('btn-de').classList.toggle('active', savedLang === 'de');
+      })();
+    </script>
 </body>
 </html>

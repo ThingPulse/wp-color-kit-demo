@@ -1,5 +1,4 @@
-#tp-board-game,
-.tp-board-game {
+#tp-board-game {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   max-width: 600px;
   margin: 0 auto;
@@ -8,8 +7,7 @@
   width: 100%;
 }
 
-#tp-board-game *,
-.tp-board-game * {
+#tp-board-game * {
   box-sizing: border-box;
 }
 
@@ -225,8 +223,7 @@
 }
 
 @media (max-width: 480px) {
-  #tp-board-game,
-  .tp-board-game {
+  #tp-board-game {
     padding: 15px 10px;
   }
   
@@ -253,8 +250,7 @@
 }
 
 @media (max-width: 360px) {
-  #tp-board-game,
-  .tp-board-game {
+  #tp-board-game {
     padding: 10px;
   }
   

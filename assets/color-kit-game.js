@@ -30,7 +30,7 @@
     const tray = gameElement.querySelector('.tp-tray');
     const stepText = gameElement.querySelector('.tp-step-text');
     const completion = gameElement.querySelector('.tp-completion');
-    const ghostComponent = gameElement.querySelector('.tp-ghost-component');
+    const ghostComponent = gameElement.querySelector('#tp-ghost');
     
     function updateStepIndicator() {
       if (currentStep <= componentOrder.length) {

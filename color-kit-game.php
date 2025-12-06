@@ -77,7 +77,7 @@ class ColorKitGame {
                 'color-kit-game-style',
                 plugin_dir_url(__FILE__) . 'assets/color-kit-game.css',
                 array(),
-                '1.0.0'
+                '1.0.1'
             );
             
             wp_enqueue_script(

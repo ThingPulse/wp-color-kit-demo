@@ -84,7 +84,7 @@ class ColorKitGame {
                 'color-kit-game-script',
                 plugin_dir_url(__FILE__) . 'assets/color-kit-game.js',
                 array(),
-                '1.0.1',
+                '1.0.3',
                 true
             );
         }

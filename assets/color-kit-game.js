@@ -37,6 +37,44 @@
       }
     }
     const board = gameElement.querySelector('.tp-board');
+    
+    // Universal tracking function for multiple analytics platforms
+    function trackEvent(eventName, eventData = {}) {
+      // Microsoft Clarity
+      if (typeof window.clarity === 'function') {
+        window.clarity('event', eventName);
+      }
+      
+      // Google Analytics 4 (gtag.js)
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', eventName, eventData);
+      }
+      
+      // Google Analytics Universal (analytics.js)
+      if (typeof window.ga === 'function') {
+        const label = eventData.step ? `Step ${eventData.step}` : '';
+        window.ga('send', 'event', 'Color Kit Game', eventName, label);
+      }
+      
+      // Google Tag Manager
+      if (typeof window.dataLayer !== 'undefined') {
+        window.dataLayer.push({
+          'event': eventName,
+          'eventCategory': 'Color Kit Game',
+          ...eventData
+        });
+      }
+      
+      // Facebook Pixel
+      if (typeof window.fbq === 'function') {
+        window.fbq('trackCustom', eventName, eventData);
+      }
+      
+      // Plausible Analytics
+      if (typeof window.plausible === 'function') {
+        window.plausible(eventName, { props: eventData });
+      }
+    }
     const boardBase = gameElement.querySelector('.tp-board-base');
     const tray = gameElement.querySelector('.tp-tray');
     const stepText = gameElement.querySelector('.tp-step-text');
@@ -175,6 +213,12 @@
       
       currentStep++;
       
+      // Track component placement
+      trackEvent('color_kit_component_placed', {
+        step: currentStep - 1,
+        component: component.dataset.id
+      });
+      
       if (order === 7) {
         setTimeout(() => {
           flipBoardToBack();
@@ -262,6 +306,11 @@
       showDisplayOn();
       tray.style.display = 'none';
       
+      // Track game completion
+      trackEvent('color_kit_game_completed', {
+        language: gameElement.dataset.lang || 'en'
+      });
+      
       setTimeout(() => {
         completion.classList.remove('tp-hidden');
         stepText.textContent = translations && translations.assembly_complete ? translations.assembly_complete : 'Assembly Complete!';
@@ -283,6 +332,11 @@
     updateStepIndicator();
     updateGhostComponent();
     showCurrentComponent();
+    
+    // Track game start
+    trackEvent('color_kit_game_started', {
+      language: gameElement.dataset.lang || 'en'
+    });
     
     const components = gameElement.querySelectorAll('.tp-component');
     components.forEach(comp => {

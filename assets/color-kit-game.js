@@ -296,6 +296,9 @@
     games.forEach(game => initGame(game));
   }
   
+  // Expose initGame globally for WordPress inline script initialization
+  window.colorKitGameInit = initGame;
+  
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {

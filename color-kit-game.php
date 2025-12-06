@@ -113,12 +113,6 @@ class ColorKitGame {
         
         ob_start();
         ?>
-        <script type="text/javascript">
-        if (typeof window.colorKitTranslations === 'undefined') {
-            window.colorKitTranslations = {};
-        }
-        window.colorKitTranslations['<?php echo $game_id; ?>'] = <?php echo json_encode($translations); ?>;
-        </script>
         <div id="<?php echo $game_id; ?>" 
              class="tp-board-game"
              data-button-url="<?php echo esc_url($atts['button_url']); ?>" 
@@ -219,6 +213,19 @@ class ColorKitGame {
             </div>
           </div>
         </div>
+        <script type="text/javascript">
+        (function() {
+            if (typeof window.colorKitTranslations === 'undefined') {
+                window.colorKitTranslations = {};
+            }
+            window.colorKitTranslations['<?php echo $game_id; ?>'] = <?php echo json_encode($translations); ?>;
+            
+            // If the main script is already loaded, initialize this game instance
+            if (typeof window.colorKitGameInit === 'function') {
+                window.colorKitGameInit(document.getElementById('<?php echo $game_id; ?>'));
+            }
+        })();
+        </script>
         <?php
         return ob_get_clean();
     }

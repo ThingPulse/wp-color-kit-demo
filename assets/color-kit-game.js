@@ -112,6 +112,29 @@
         const order = parseInt(comp.dataset.order);
         if (order === currentStep) {
           comp.classList.remove('tp-hidden');
+          
+          // Show drag hint on first component only
+          if (currentStep === 1 && !comp.dataset.hintShown) {
+            comp.dataset.hintShown = 'true';
+            comp.classList.add('tp-drag-hint');
+            
+            // Create fake cursor element
+            const fakeCursor = document.createElement('div');
+            fakeCursor.className = 'tp-fake-cursor';
+            fakeCursor.innerHTML = '👆';
+            comp.parentElement.appendChild(fakeCursor);
+            
+            // Position cursor relative to component
+            const rect = comp.getBoundingClientRect();
+            const trayRect = comp.parentElement.getBoundingClientRect();
+            fakeCursor.style.left = (rect.left - trayRect.left + rect.width / 2) + 'px';
+            fakeCursor.style.top = (rect.top - trayRect.top + rect.height / 2) + 'px';
+            
+            setTimeout(() => {
+              comp.classList.remove('tp-drag-hint');
+              fakeCursor.remove();
+            }, 3000);
+          }
         } else if (!comp.classList.contains('tp-placed')) {
           comp.classList.add('tp-hidden');
         }
@@ -331,12 +354,39 @@
     
     updateStepIndicator();
     updateGhostComponent();
-    showCurrentComponent();
     
-    // Track game start
-    trackEvent('color_kit_game_started', {
-      language: gameElement.dataset.lang || 'en'
+    // Use Intersection Observer to show hint only when game becomes visible
+    let hintShown = false;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hintShown && currentStep === 1) {
+          hintShown = true;
+          showCurrentComponent();
+          
+          // Track game start when it becomes visible
+          trackEvent('color_kit_game_started', {
+            language: gameElement.dataset.lang || 'en'
+          });
+          
+          observer.disconnect();
+        }
+      });
+    }, {
+      threshold: 0.3 // Trigger when 30% of the game is visible
     });
+    
+    observer.observe(gameElement);
+    
+    // If game is already visible on load, show immediately
+    const rect = gameElement.getBoundingClientRect();
+    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+    if (isVisible) {
+      showCurrentComponent();
+      trackEvent('color_kit_game_started', {
+        language: gameElement.dataset.lang || 'en'
+      });
+      observer.disconnect();
+    }
     
     const components = gameElement.querySelectorAll('.tp-component');
     components.forEach(comp => {

@@ -216,11 +216,59 @@
 @keyframes tp-fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-20px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes tp-dragHint {
+  0%, 100% {
+    transform: translateX(0) scale(1);
+  }
+  25% {
+    transform: translateX(-8px) scale(1.05);
+  }
+  50% {
+    transform: translateX(8px) scale(1.05);
+  }
+  75% {
+    transform: translateX(-8px) scale(1.05);
+  }
+}
+
+.tp-drag-hint {
+  animation: tp-dragHint 1.5s ease-in-out;
+  position: relative;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.3), 0 0 20px rgba(102, 126, 234, 0.5) !important;
+  z-index: 100;
+  cursor: grab !important;
+}
+
+.tp-drag-hint:active {
+  cursor: grabbing !important;
+}
+
+.tp-fake-cursor {
+  position: absolute;
+  font-size: clamp(24px, 5vw, 32px);
+  pointer-events: none;
+  z-index: 1000;
+  animation: tp-cursorPulse 1.5s ease-in-out infinite;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes tp-cursorPulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
   }
 }
 

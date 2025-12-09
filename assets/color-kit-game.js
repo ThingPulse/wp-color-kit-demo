@@ -106,6 +106,18 @@
       }
     }
     
+    function removeDragHint() {
+      const firstComponent = tray.querySelector('[data-order="1"]');
+      if (firstComponent && firstComponent.dataset.fakeCursor === 'active') {
+        firstComponent.classList.remove('tp-drag-hint');
+        const fakeCursor = tray.querySelector('.tp-fake-cursor');
+        if (fakeCursor) {
+          fakeCursor.remove();
+        }
+        firstComponent.dataset.fakeCursor = 'removed';
+      }
+    }
+    
     function showCurrentComponent() {
       const components = tray.querySelectorAll('.tp-component');
       components.forEach(comp => {
@@ -132,6 +144,9 @@
             
             // Store reference to fake cursor for later removal
             comp.dataset.fakeCursor = 'active';
+            
+            // Add event listener to remove hint when mouse/pointer enters tray
+            tray.addEventListener('pointerenter', removeDragHint, { once: true });
           }
         } else if (!comp.classList.contains('tp-placed')) {
           comp.classList.add('tp-hidden');
@@ -153,14 +168,7 @@
       e.preventDefault();
       
       // Remove drag hint animation when user starts dragging
-      if (component.dataset.fakeCursor === 'active') {
-        component.classList.remove('tp-drag-hint');
-        const fakeCursor = component.parentElement.querySelector('.tp-fake-cursor');
-        if (fakeCursor) {
-          fakeCursor.remove();
-        }
-        component.dataset.fakeCursor = 'removed';
-      }
+      removeDragHint();
       
       draggedElement = component;
       originalParent = component.parentElement;

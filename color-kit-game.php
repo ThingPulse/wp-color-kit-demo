@@ -3,7 +3,7 @@
  * Plugin Name: Color Kit Assembly Game
  * Plugin URI: https://yoursite.com
  * Description: An interactive drag-and-drop PCB assembly game with shortcode support
- * Version: 1.0.0
+ * Version: 1.0.7
  * Author: Your Name
  * Author URI: https://yoursite.com
  * License: GPL v2 or later
@@ -77,14 +77,14 @@ class ColorKitGame {
                 'color-kit-game-style',
                 plugin_dir_url(__FILE__) . 'assets/color-kit-game.css',
                 array(),
-                '1.0.3'
+                '1.0.7'
             );
             
             wp_enqueue_script(
                 'color-kit-game-script',
                 plugin_dir_url(__FILE__) . 'assets/color-kit-game.js',
                 array(),
-                '1.0.6',
+                '1.0.7',
                 true
             );
         }

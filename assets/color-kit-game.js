@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   
-  console.log('Color Kit Game Script Loaded v1.0.1');
+  console.log('Color Kit Game Script Loaded v1.0.7');
   
   const componentOrder = [
     { id: '01_FemaleHeaderPins_12P', name: 'Female Header Pins (12P)', order: 1 },
@@ -130,10 +130,8 @@
             fakeCursor.style.left = (rect.left - trayRect.left + rect.width / 2) + 'px';
             fakeCursor.style.top = (rect.top - trayRect.top + rect.height / 2) + 'px';
             
-            setTimeout(() => {
-              comp.classList.remove('tp-drag-hint');
-              fakeCursor.remove();
-            }, 3000);
+            // Store reference to fake cursor for later removal
+            comp.dataset.fakeCursor = 'active';
           }
         } else if (!comp.classList.contains('tp-placed')) {
           comp.classList.add('tp-hidden');
@@ -153,6 +151,16 @@
       }
       
       e.preventDefault();
+      
+      // Remove drag hint animation when user starts dragging
+      if (component.dataset.fakeCursor === 'active') {
+        component.classList.remove('tp-drag-hint');
+        const fakeCursor = component.parentElement.querySelector('.tp-fake-cursor');
+        if (fakeCursor) {
+          fakeCursor.remove();
+        }
+        component.dataset.fakeCursor = 'removed';
+      }
       
       draggedElement = component;
       originalParent = component.parentElement;

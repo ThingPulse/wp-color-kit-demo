@@ -240,7 +240,7 @@
 }
 
 .tp-drag-hint {
-  animation: tp-dragHint 1.5s ease-in-out;
+  animation: tp-dragHint 1.5s ease-in-out infinite;
   position: relative;
   box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.3), 0 0 20px rgba(102, 126, 234, 0.5) !important;
   z-index: 100;

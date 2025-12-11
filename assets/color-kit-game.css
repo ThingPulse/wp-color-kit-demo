@@ -115,6 +115,10 @@
   line-height: 1.4;
 }
 
+.tp-step-indicator.tp-hidden {
+  display: none;
+}
+
 .tp-assembly-area {
   display: flex;
   flex-direction: column;
@@ -152,6 +156,7 @@
   width: 100%;
   max-width: 500px;
   min-height: 150px;
+  height: 150px;
   padding: 20px;
   background: #fff;
   border: 2px dashed #ccc;
@@ -162,8 +167,8 @@
 }
 
 .tp-component {
-  max-width: min(150px, 35vw);
-  max-height: min(150px, 35vw);
+  max-width: min(130px, 30vw);
+  max-height: min(130px, 30vw);
   width: auto;
   height: auto;
   object-fit: contain;

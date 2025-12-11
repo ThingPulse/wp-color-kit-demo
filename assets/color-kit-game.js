@@ -127,7 +127,7 @@
         
         preview3d.src = imgPath + '3d/' + filename3d + '.webp';
       } else {
-        // After all components placed, show the display
+        // After all components placed, show the final display (step 12 = 15_Display)
         preview3d.src = imgPath + '3d/15_Display.webp';
       }
     }
@@ -362,14 +362,20 @@
       showDisplayOn();
       tray.style.display = 'none';
       
+      // Update 3D preview to show final state with display on
+      if (preview3d) {
+        preview3d.src = imgPath + '3d/16_DisplayOn.webp';
+      }
+      
       // Track game completion
       trackEvent('color_kit_game_completed', {
         language: gameElement.dataset.lang || 'en'
       });
       
       setTimeout(() => {
+        // Hide step indicator and show completion box in its place
+        stepText.parentElement.classList.add('tp-hidden');
         completion.classList.remove('tp-hidden');
-        stepText.textContent = translations && translations.assembly_complete ? translations.assembly_complete : 'Assembly Complete!';
         
         // Update completion text and button with translations
         const completionText = completion.querySelector('.tp-completion-text');

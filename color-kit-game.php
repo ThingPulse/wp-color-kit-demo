@@ -77,14 +77,14 @@ class ColorKitGame {
                 'color-kit-game-style',
                 plugin_dir_url(__FILE__) . 'assets/color-kit-game.css',
                 array(),
-                '1.0.6'
+                '1.1.0'
             );
             
             wp_enqueue_script(
                 'color-kit-game-script',
                 plugin_dir_url(__FILE__) . 'assets/color-kit-game.js',
                 array(),
-                '1.1.1',
+                '1.1.4',
                 true
             );
         }
@@ -125,6 +125,11 @@ class ColorKitGame {
             
             <div class="tp-step-indicator">
               <span class="tp-step-text"><?php echo sprintf($translations['step_text'], 1, 12, $translations['components']['01_FemaleHeaderPins_12P']); ?></span>
+            </div>
+            
+            <div class="tp-completion tp-hidden">
+              <p class="tp-completion-text"><?php echo esc_html($translations['completion_text']); ?></p>
+              <a href="<?php echo esc_url($atts['button_url']); ?>" class="tp-completion-btn"><?php echo esc_html($atts['button_text']); ?></a>
             </div>
             
             <div class="tp-assembly-area">
@@ -206,11 +211,6 @@ class ColorKitGame {
               <div class="tp-3d-preview tp-hidden">
                 <img src="<?php echo esc_url($atts['img_path']); ?>3d/00_ConnectorBoard.webp" id="tp-3d-image" alt="3D Preview">
               </div>
-            </div>
-            
-            <div class="tp-completion tp-hidden">
-              <p class="tp-completion-text"><?php echo esc_html($translations['completion_text']); ?></p>
-              <a href="<?php echo esc_url($atts['button_url']); ?>" class="tp-completion-btn"><?php echo esc_html($atts['button_text']); ?></a>
             </div>
           </div>
         </div>

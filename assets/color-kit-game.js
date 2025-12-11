@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   
-  console.log('Color Kit Game Script Loaded v1.0.1');
+  console.log('Color Kit Game Script Loaded v1.0.7');
   
   const componentOrder = [
     { id: '01_FemaleHeaderPins_12P', name: 'Female Header Pins (12P)', order: 1 },
@@ -132,6 +132,18 @@
       }
     }
     
+    function removeDragHint() {
+      const firstComponent = tray.querySelector('[data-order="1"]');
+      if (firstComponent && firstComponent.dataset.fakeCursor === 'active') {
+        firstComponent.classList.remove('tp-drag-hint');
+        const fakeCursor = tray.querySelector('.tp-fake-cursor');
+        if (fakeCursor) {
+          fakeCursor.remove();
+        }
+        firstComponent.dataset.fakeCursor = 'removed';
+      }
+    }
+    
     function showCurrentComponent() {
       const components = tray.querySelectorAll('.tp-component');
       components.forEach(comp => {
@@ -156,10 +168,11 @@
             fakeCursor.style.left = (rect.left - trayRect.left + rect.width / 2) + 'px';
             fakeCursor.style.top = (rect.top - trayRect.top + rect.height / 2) + 'px';
             
-            setTimeout(() => {
-              comp.classList.remove('tp-drag-hint');
-              fakeCursor.remove();
-            }, 3000);
+            // Store reference to fake cursor for later removal
+            comp.dataset.fakeCursor = 'active';
+            
+            // Add event listener to remove hint when mouse/pointer enters tray
+            tray.addEventListener('pointerenter', removeDragHint, { once: true });
           }
         } else if (!comp.classList.contains('tp-placed')) {
           comp.classList.add('tp-hidden');
@@ -179,6 +192,9 @@
       }
       
       e.preventDefault();
+      
+      // Remove drag hint animation when user starts dragging
+      removeDragHint();
       
       draggedElement = component;
       originalParent = component.parentElement;

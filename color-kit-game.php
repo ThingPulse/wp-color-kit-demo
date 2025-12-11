@@ -26,7 +26,7 @@ class ColorKitGame {
         $translations = array(
             'en' => array(
                 'step_text' => 'Step %d of %d: Place the %s',
-                'completion_text' => 'Nice! You\'ve just built the whole board. This is exactly what you\'ll do with the real Color Kit.',
+                'completion_text' => 'Nice! You\'ve just built the whole board. This is exactly what you\'ll do with the real Color Kit. Use coupon code <strong>colorkit5percent</strong> at checkout to save 5%!',
                 'button_text' => 'Build it for real',
                 'assembly_complete' => 'Assembly Complete!',
                 'components' => array(
@@ -46,7 +46,7 @@ class ColorKitGame {
             ),
             'de' => array(
                 'step_text' => 'Schritt %d von %d: Platziere %s',
-                'completion_text' => 'Toll! Du hast gerade die ganze Platine gebaut. Genau das wirst du mit dem echten Color Kit tun.',
+                'completion_text' => 'Toll! Du hast gerade die ganze Platine gebaut. Genau das wirst du mit dem echten Color Kit tun. Nutze den Gutscheincode <strong>colorkit5percent</strong> beim Checkout und spare 5%!',
                 'button_text' => 'Jetzt das echte bauen',
                 'assembly_complete' => 'Montage abgeschlossen!',
                 'components' => array(

@@ -398,7 +398,7 @@
         const completionBtn = completion.querySelector('.tp-completion-btn');
         
         if (completionText && translations && translations.completion_text) {
-          completionText.textContent = translations.completion_text;
+          completionText.innerHTML = translations.completion_text;
         }
         
         if (completionBtn && translations && translations.button_text) {

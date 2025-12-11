@@ -99,7 +99,7 @@
     function updateGhostComponent() {
       if (currentStep <= componentOrder.length) {
         const currentComponent = componentOrder[currentStep - 1];
-        ghostComponent.src = imgPath + currentComponent.id + '.png';
+        ghostComponent.src = imgPath + currentComponent.id + '.webp';
         ghostComponent.style.zIndex = '200';
         ghostComponent.style.display = 'block';
       } else {
@@ -113,7 +113,7 @@
       // For step 2: show state after step 1 was placed
       if (currentStep === 1) {
         // Show empty board
-        preview3d.src = imgPath + '3d/00_ConnectorBoard.png';
+        preview3d.src = imgPath + '3d/00_ConnectorBoard.webp';
       } else if (currentStep <= componentOrder.length) {
         // Show what it looked like after the previous component was placed
         const previousComponent = componentOrder[currentStep - 2];
@@ -125,10 +125,10 @@
         if (previousComponent.id === '03_MaleHeaderPins_12P') filename3d = '03_MaleHeader_12p';
         if (previousComponent.id === '04_MaleHeaderPins_16P') filename3d = '04_MaleHeader_16p';
         
-        preview3d.src = imgPath + '3d/' + filename3d + '.png';
+        preview3d.src = imgPath + '3d/' + filename3d + '.webp';
       } else {
         // After all components placed, show the display
-        preview3d.src = imgPath + '3d/15_Display.png';
+        preview3d.src = imgPath + '3d/15_Display.webp';
       }
     }
     
@@ -319,7 +319,7 @@
           }
         });
         
-        boardBase.src = imgPath + '10_ConnectorBoard.png';
+        boardBase.src = imgPath + '10_ConnectorBoard.webp';
         board.style.transform = 'rotateY(360deg)';
         
         setTimeout(() => {
@@ -334,7 +334,7 @@
       ghostComponent.style.display = 'none';
       
       const displayOn = document.createElement('img');
-      displayOn.src = imgPath + '16_DisplayOn.png';
+      displayOn.src = imgPath + '16_DisplayOn.webp';
       displayOn.style.position = 'absolute';
       displayOn.style.top = '0';
       displayOn.style.left = '0';

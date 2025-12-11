@@ -77,14 +77,14 @@ class ColorKitGame {
                 'color-kit-game-style',
                 plugin_dir_url(__FILE__) . 'assets/color-kit-game.css',
                 array(),
-                '1.0.4'
+                '1.0.5'
             );
             
             wp_enqueue_script(
                 'color-kit-game-script',
                 plugin_dir_url(__FILE__) . 'assets/color-kit-game.js',
                 array(),
-                '1.0.9',
+                '1.1.0',
                 true
             );
         }
@@ -117,8 +117,8 @@ class ColorKitGame {
           <div class="tp-game-container">
             <div class="tp-board-wrapper">
               <div class="tp-board">
-                <img src="<?php echo esc_url($atts['img_path']); ?>00_ConenctorBoard.png" class="tp-board-base" alt="Connector Board">
-                <img src="<?php echo esc_url($atts['img_path']); ?>01_FemaleHeaderPins_12P.png" class="tp-ghost-component" id="tp-ghost" alt="Target placement">
+                <img src="<?php echo esc_url($atts['img_path']); ?>00_ConenctorBoard.webp" class="tp-board-base" alt="Connector Board">
+                <img src="<?php echo esc_url($atts['img_path']); ?>01_FemaleHeaderPins_12P.webp" class="tp-ghost-component" id="tp-ghost" alt="Target placement">
                 <!-- Placed components will be added here -->
               </div>
             </div>
@@ -129,80 +129,80 @@ class ColorKitGame {
             
             <div class="tp-assembly-area">
               <div class="tp-3d-preview">
-                <img src="<?php echo esc_url($atts['img_path']); ?>3d/00_ConnectorBoard.png" id="tp-3d-image" alt="3D Preview">
+                <img src="<?php echo esc_url($atts['img_path']); ?>3d/00_ConnectorBoard.webp" id="tp-3d-image" alt="3D Preview">
               </div>
               
               <div class="tp-tray">
-              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/01_FemaleHeaderPins_12P.png" 
+              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/01_FemaleHeaderPins_12P.webp" 
                    class="tp-component" 
                    data-id="01_FemaleHeaderPins_12P"
-                   data-full-src="<?php echo esc_url($atts['img_path']); ?>01_FemaleHeaderPins_12P.png"
+                   data-full-src="<?php echo esc_url($atts['img_path']); ?>01_FemaleHeaderPins_12P.webp"
                    data-order="1"
                    alt="Female Header Pins 12P">
-              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/02_FemaleHeaderPins_16p.png" 
+              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/02_FemaleHeaderPins_16p.webp" 
                    class="tp-component tp-hidden" 
                    data-id="02_FemaleHeaderPins_16p"
-                   data-full-src="<?php echo esc_url($atts['img_path']); ?>02_FemaleHeaderPins_16p.png"
+                   data-full-src="<?php echo esc_url($atts['img_path']); ?>02_FemaleHeaderPins_16p.webp"
                    data-order="2"
                    alt="Female Header Pins 16P">
-              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/03_MaleHeaderPins_12P.png" 
+              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/03_MaleHeaderPins_12P.webp" 
                    class="tp-component tp-hidden" 
                    data-id="03_MaleHeaderPins_12P"
-                   data-full-src="<?php echo esc_url($atts['img_path']); ?>03_MaleHeaderPins_12P.png"
+                   data-full-src="<?php echo esc_url($atts['img_path']); ?>03_MaleHeaderPins_12P.webp"
                    data-order="3"
                    alt="Male Header Pins 12P">
-              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/04_MaleHeaderPins_16P.png" 
+              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/04_MaleHeaderPins_16P.webp" 
                    class="tp-component tp-hidden" 
                    data-id="04_MaleHeaderPins_16P"
-                   data-full-src="<?php echo esc_url($atts['img_path']); ?>04_MaleHeaderPins_16P.png"
+                   data-full-src="<?php echo esc_url($atts['img_path']); ?>04_MaleHeaderPins_16P.webp"
                    data-order="4"
                    alt="Male Header Pins 16P">
-              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/05_ePulseFeather.png" 
+              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/05_ePulseFeather.webp" 
                    class="tp-component tp-hidden" 
                    data-id="05_ePulseFeather"
-                   data-full-src="<?php echo esc_url($atts['img_path']); ?>05_ePulseFeather.png"
+                   data-full-src="<?php echo esc_url($atts['img_path']); ?>05_ePulseFeather.webp"
                    data-order="5"
                    alt="ePulse Feather">
-              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/06_PowerSwitch.png" 
+              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/06_PowerSwitch.webp" 
                    class="tp-component tp-hidden" 
                    data-id="06_PowerSwitch"
-                   data-full-src="<?php echo esc_url($atts['img_path']); ?>06_PowerSwitch.png"
+                   data-full-src="<?php echo esc_url($atts['img_path']); ?>06_PowerSwitch.webp"
                    data-order="6"
                    alt="Power Switch">
-              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/07_GroveConnector.png" 
+              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/07_GroveConnector.webp" 
                    class="tp-component tp-hidden" 
                    data-id="07_GroveConnector"
-                   data-full-src="<?php echo esc_url($atts['img_path']); ?>07_GroveConnector.png"
+                   data-full-src="<?php echo esc_url($atts['img_path']); ?>07_GroveConnector.webp"
                    data-order="7"
                    alt="Grove Connector">
-              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/11_Sticker1.png" 
+              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/11_Sticker1.webp" 
                    class="tp-component tp-hidden" 
                    data-id="11_Sticker1"
-                   data-full-src="<?php echo esc_url($atts['img_path']); ?>11_Sticker1.png"
+                   data-full-src="<?php echo esc_url($atts['img_path']); ?>11_Sticker1.webp"
                    data-order="8"
                    alt="Sticker 1">
-              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/12_Sticker2.png" 
+              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/12_Sticker2.webp" 
                    class="tp-component tp-hidden" 
                    data-id="12_Sticker2"
-                   data-full-src="<?php echo esc_url($atts['img_path']); ?>12_Sticker2.png"
+                   data-full-src="<?php echo esc_url($atts['img_path']); ?>12_Sticker2.webp"
                    data-order="9"
                    alt="Sticker 2">
-              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/13_Sticker3.png" 
+              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/13_Sticker3.webp" 
                    class="tp-component tp-hidden" 
                    data-id="13_Sticker3"
-                   data-full-src="<?php echo esc_url($atts['img_path']); ?>13_Sticker3.png"
+                   data-full-src="<?php echo esc_url($atts['img_path']); ?>13_Sticker3.webp"
                    data-order="10"
                    alt="Sticker 3">
-              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/14_Sticker4.png" 
+              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/14_Sticker4.webp" 
                    class="tp-component tp-hidden" 
                    data-id="14_Sticker4"
-                   data-full-src="<?php echo esc_url($atts['img_path']); ?>14_Sticker4.png"
+                   data-full-src="<?php echo esc_url($atts['img_path']); ?>14_Sticker4.webp"
                    data-order="11"
                    alt="Sticker 4">
-              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/15_Display.png" 
+              <img src="<?php echo esc_url($atts['img_path']); ?>pickup/15_Display.webp" 
                    class="tp-component tp-hidden" 
                    data-id="15_Display"
-                   data-full-src="<?php echo esc_url($atts['img_path']); ?>15_Display.png"
+                   data-full-src="<?php echo esc_url($atts['img_path']); ?>15_Display.webp"
                    data-order="12"
                    alt="Display">
               </div>

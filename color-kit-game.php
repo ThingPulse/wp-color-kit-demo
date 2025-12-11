@@ -84,7 +84,7 @@ class ColorKitGame {
                 'color-kit-game-script',
                 plugin_dir_url(__FILE__) . 'assets/color-kit-game.js',
                 array(),
-                '1.0.7',
+                '1.0.9',
                 true
             );
         }
@@ -129,7 +129,7 @@ class ColorKitGame {
             
             <div class="tp-assembly-area">
               <div class="tp-3d-preview">
-                <img src="<?php echo esc_url($atts['img_path']); ?>3d/01_FemaleHeader_12P.png" id="tp-3d-image" alt="3D Preview">
+                <img src="<?php echo esc_url($atts['img_path']); ?>3d/00_ConnectorBoard.png" id="tp-3d-image" alt="3D Preview">
               </div>
               
               <div class="tp-tray">

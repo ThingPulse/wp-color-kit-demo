@@ -77,14 +77,14 @@ class ColorKitGame {
                 'color-kit-game-style',
                 plugin_dir_url(__FILE__) . 'assets/color-kit-game.css',
                 array(),
-                '1.0.5'
+                '1.0.6'
             );
             
             wp_enqueue_script(
                 'color-kit-game-script',
                 plugin_dir_url(__FILE__) . 'assets/color-kit-game.js',
                 array(),
-                '1.1.0',
+                '1.1.1',
                 true
             );
         }
@@ -128,10 +128,6 @@ class ColorKitGame {
             </div>
             
             <div class="tp-assembly-area">
-              <div class="tp-3d-preview">
-                <img src="<?php echo esc_url($atts['img_path']); ?>3d/00_ConnectorBoard.webp" id="tp-3d-image" alt="3D Preview">
-              </div>
-              
               <div class="tp-tray">
               <img src="<?php echo esc_url($atts['img_path']); ?>pickup/01_FemaleHeaderPins_12P.webp" 
                    class="tp-component" 
@@ -205,6 +201,10 @@ class ColorKitGame {
                    data-full-src="<?php echo esc_url($atts['img_path']); ?>15_Display.webp"
                    data-order="12"
                    alt="Display">
+              </div>
+              
+              <div class="tp-3d-preview tp-hidden">
+                <img src="<?php echo esc_url($atts['img_path']); ?>3d/00_ConnectorBoard.webp" id="tp-3d-image" alt="3D Preview">
               </div>
             </div>
             

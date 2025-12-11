@@ -262,6 +262,11 @@
       
       currentStep++;
       
+      // Show 3D preview after first component is placed
+      if (currentStep === 2 && preview3d) {
+        preview3d.parentElement.classList.remove('tp-hidden');
+      }
+      
       // Track component placement
       trackEvent('color_kit_component_placed', {
         step: currentStep - 1,

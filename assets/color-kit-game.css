@@ -115,9 +115,36 @@
   line-height: 1.4;
 }
 
+.tp-assembly-area {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  max-width: 800px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.tp-3d-preview {
+  flex-shrink: 0;
+  width: clamp(120px, 25vw, 200px);
+  background: #f9f9f9;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tp-3d-preview img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
 .tp-tray {
   position: relative;
-  width: 100%;
+  flex: 1;
+  min-width: 200px;
   max-width: 500px;
   min-height: 150px;
   padding: 20px;
@@ -283,6 +310,17 @@
   
   .tp-board {
     border-width: 2px;
+  }
+  
+  .tp-assembly-area {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .tp-3d-preview {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
   }
   
   .tp-tray {

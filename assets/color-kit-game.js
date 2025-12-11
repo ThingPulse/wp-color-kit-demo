@@ -80,6 +80,7 @@
     const stepText = gameElement.querySelector('.tp-step-text');
     const completion = gameElement.querySelector('.tp-completion');
     const ghostComponent = gameElement.querySelector('#tp-ghost');
+    const preview3d = gameElement.querySelector('#tp-3d-image');
     
     function updateStepIndicator() {
       if (currentStep <= componentOrder.length) {
@@ -103,6 +104,22 @@
         ghostComponent.style.display = 'block';
       } else {
         ghostComponent.style.display = 'none';
+      }
+    }
+    
+    function update3DPreview() {
+      if (currentStep <= componentOrder.length) {
+        const currentComponent = componentOrder[currentStep - 1];
+        // Map component IDs to 3D filenames
+        let filename3d = currentComponent.id;
+        
+        // Handle naming differences between component and 3D files
+        if (currentComponent.id === '01_FemaleHeaderPins_12P') filename3d = '01_FemaleHeader_12P';
+        if (currentComponent.id === '02_FemaleHeaderPins_16p') filename3d = '02_FemaleHeader_16p';
+        if (currentComponent.id === '03_MaleHeaderPins_12P') filename3d = '03_MaleHeader_12p';
+        if (currentComponent.id === '04_MaleHeaderPins_16P') filename3d = '04_MaleHeader_16p';
+        
+        preview3d.src = imgPath + '3d/' + filename3d + '.png';
       }
     }
     
@@ -249,6 +266,7 @@
             if (currentStep <= componentOrder.length) {
               updateStepIndicator();
               updateGhostComponent();
+              update3DPreview();
               showCurrentComponent();
             }
           }, 1600);
@@ -258,6 +276,7 @@
       } else {
         updateStepIndicator();
         updateGhostComponent();
+        update3DPreview();
         showCurrentComponent();
       }
     }
@@ -354,6 +373,7 @@
     
     updateStepIndicator();
     updateGhostComponent();
+    update3DPreview();
     
     // Use Intersection Observer to show hint only when game becomes visible
     let hintShown = false;

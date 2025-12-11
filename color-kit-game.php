@@ -77,14 +77,14 @@ class ColorKitGame {
                 'color-kit-game-style',
                 plugin_dir_url(__FILE__) . 'assets/color-kit-game.css',
                 array(),
-                '1.0.3'
+                '1.0.4'
             );
             
             wp_enqueue_script(
                 'color-kit-game-script',
                 plugin_dir_url(__FILE__) . 'assets/color-kit-game.js',
                 array(),
-                '1.0.6',
+                '1.0.7',
                 true
             );
         }
@@ -127,7 +127,12 @@ class ColorKitGame {
               <span class="tp-step-text"><?php echo sprintf($translations['step_text'], 1, 12, $translations['components']['01_FemaleHeaderPins_12P']); ?></span>
             </div>
             
-            <div class="tp-tray">
+            <div class="tp-assembly-area">
+              <div class="tp-3d-preview">
+                <img src="<?php echo esc_url($atts['img_path']); ?>3d/01_FemaleHeader_12P.png" id="tp-3d-image" alt="3D Preview">
+              </div>
+              
+              <div class="tp-tray">
               <img src="<?php echo esc_url($atts['img_path']); ?>pickup/01_FemaleHeaderPins_12P.png" 
                    class="tp-component" 
                    data-id="01_FemaleHeaderPins_12P"
@@ -200,6 +205,7 @@ class ColorKitGame {
                    data-full-src="<?php echo esc_url($atts['img_path']); ?>15_Display.png"
                    data-order="12"
                    alt="Display">
+              </div>
             </div>
             
             <div class="tp-completion tp-hidden">
